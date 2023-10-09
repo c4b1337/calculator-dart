@@ -24,7 +24,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                 reverse: true,
                 child: Container(
                   alignment: Alignment.bottomRight,
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(18),
                   child: const Text(
                     "0",
                     style: TextStyle(
@@ -56,18 +56,26 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   }
 
   Widget buildButton(value) {
-    return Material(
-      clipBehavior: Clip.hardEdge,
-      shape: OutlineInputBorder(
-        borderSide: const BorderSide(
-          color: Colors.white24,
+    return Padding(
+      padding: const EdgeInsets.all(3.7),
+      child: Material(
+        clipBehavior: Clip.hardEdge,
+        color: [Btn.del, Btn.clr].contains(value)
+            ? Colors.blueGrey
+            : [Btn.subtract, Btn.add, Btn.multiply, Btn.divide, Btn.per].contains(value)
+                ? Colors.orange
+                : Colors.grey[900],
+        shape: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.white24,
+          ),
+          borderRadius: BorderRadius.circular(100.0),
         ),
-        borderRadius: BorderRadius.circular(100),
-      ),
-      child: InkWell(
-        onTap: () {},
-        child: Center(
-          child: Text(value),
+        child: InkWell(
+          onTap: () {},
+          child: Center(
+            child: Text(value),
+          ),
         ),
       ),
     );
